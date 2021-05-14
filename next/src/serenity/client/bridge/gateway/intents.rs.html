@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/client/bridge/gateway/intents.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>intents.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../../ayu.css" disabled ><script src="../../../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/client/bridge/gateway/intents.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>intents.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../../../storage.js"></script><script src="../../../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../../../serenity/index.html'><div class='logo-container rust-logo'><img src='../../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
-                <a id="settings-menu" href="../../../../../settings.html"><img src="../../../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../../serenity/index.html'><div class='logo-container rust-logo'><img src='../../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
+                <a id="settings-menu" href="../../../../../settings.html"><img src="../../../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -253,8 +253,37 @@
 <span id="250">250</span>
 <span id="251">251</span>
 <span id="252">252</span>
-</pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">bitflags</span>::<span class="ident">__impl_bitflags</span>;
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+</pre><pre class="rust">
+<span class="kw">use</span> <span class="ident">bitflags::__impl_bitflags</span>;
 <span class="kw">use</span> <span class="ident">serde</span>::{
     <span class="ident">de</span>::{<span class="ident">Deserialize</span>, <span class="ident">Deserializer</span>},
     <span class="ident">ser</span>::{<span class="ident">Serialize</span>, <span class="ident">Serializer</span>},
@@ -271,10 +300,10 @@
     <span class="doccomment">/// # Note</span>
     <span class="doccomment">/// Do not modify this yourself; use the provided methods.</span>
     <span class="doccomment">/// Do the same when creating, unless you&#39;re absolutely certain that you&#39;re giving valid intents flags.</span>
-    <span class="kw">pub</span> <span class="ident">bits</span>: <span class="ident">u64</span>
+    <span class="kw">pub</span> <span class="ident">bits</span>: <span class="ident">u64</span>,
 }
 
-<span class="macro">__impl_bitflags</span><span class="macro">!</span> {
+<span class="macro">__impl_bitflags!</span> {
     <span class="ident">GatewayIntents</span>: <span class="ident">u64</span> {
         <span class="doccomment">/// Enables following gateway events:</span>
         <span class="doccomment">///</span>
@@ -298,6 +327,8 @@
         <span class="doccomment">/// This intent is *privileged*.</span>
         <span class="doccomment">/// In order to use it, you must head to your application in the</span>
         <span class="doccomment">/// Developer Portal and enable the toggle for *Privileged Intents*.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// This intent is also necessary to even recieve the events in contains.</span>
         <span class="ident">GUILD_MEMBERS</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
         <span class="doccomment">/// Enables following gateway events:</span>
         <span class="doccomment">///</span>
@@ -333,6 +364,8 @@
         <span class="doccomment">/// This intent is *privileged*.</span>
         <span class="doccomment">/// In order to use it, you must head to your application in the</span>
         <span class="doccomment">/// Developer Portal and enable the toggle for *Privileged Intents*.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// This intent is also necessary to even recieve the events in contains.</span>
         <span class="ident">GUILD_PRESENCES</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>;
         <span class="doccomment">/// Enables following gateway events:</span>
         <span class="doccomment">///</span>
@@ -374,17 +407,19 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">GatewayIntents</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span>::<span class="ident">empty</span>() }
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span><span class="ident">::empty</span>()
+    }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="ident">Deserialize</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">GatewayIntents</span> {
-    <span class="kw">fn</span> <span class="ident">deserialize</span><span class="op">&lt;</span><span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">deserializer</span>: <span class="ident">D</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="self">Self</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">u64</span>::<span class="ident">deserialize</span>(<span class="ident">deserializer</span>)<span class="question-mark">?</span>))
+    <span class="kw">fn</span> <span class="ident">deserialize</span><span class="op">&lt;</span><span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">deserializer</span>: <span class="ident">D</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">D::Error</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::from_bits_truncate</span>(<span class="ident">u64::deserialize</span>(<span class="ident">deserializer</span>)<span class="question-mark">?</span>))
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Serialize</span> <span class="kw">for</span> <span class="ident">GatewayIntents</span> {
-    <span class="kw">fn</span> <span class="ident">serialize</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">serializer</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span>
+    <span class="kw">fn</span> <span class="ident">serialize</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">serializer</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S::Ok</span>, <span class="ident">S::Error</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">S</span>: <span class="ident">Serializer</span>,
     {
@@ -394,117 +429,141 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>)]</span>
 <span class="kw">impl</span> <span class="ident">GatewayIntents</span> {
-     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
+    <span class="doccomment">/// Gets all of the intents that don&#39;t are considered privileged by Discord.</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">non_privileged</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GatewayIntents</span> {
+        <span class="comment">// bitflags don&#39;t support const evaluation. Workaround.</span>
+        <span class="comment">// See: https://github.com/bitflags/bitflags/issues/180</span>
+        <span class="self">Self</span><span class="ident">::from_bits_truncate</span>(<span class="self">Self</span><span class="ident">::all</span>().<span class="ident">bits</span>() <span class="op">&amp;</span> <span class="op">!</span><span class="self">Self</span><span class="ident">::privileged</span>().<span class="ident">bits</span>())
+    }
+
+    <span class="doccomment">/// Gets all of the intents that are considered privileged by Discord.</span>
+    <span class="doccomment">/// Use of these intents will require explicitly whitelisting the bot.</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">privileged</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GatewayIntents</span> {
+        <span class="comment">// bitflags don&#39;t support const evaluation. Workaround.</span>
+        <span class="comment">// See: https://github.com/bitflags/bitflags/issues/180</span>
+        <span class="self">Self</span><span class="ident">::from_bits_truncate</span>(<span class="self">Self</span><span class="ident">::GUILD_MEMBERS</span>.<span class="ident">bits</span>() <span class="op">|</span> <span class="self">Self</span><span class="ident">::GUILD_PRESENCES</span>.<span class="ident">bits</span>())
+    }
+
+    <span class="doccomment">/// Checks if any of the included intents are privileged</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [GUILD_MEMBERS]: #associatedconstant.GUILD_MEMBERS</span>
+    <span class="doccomment">/// [GUILD_PRESENCES]: #associatedconstant.GUILD_PRESENCES</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_privileged</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">guild_members</span>() <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">guild_presences</span>()
+    }
+
+    <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [GUILDS] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [GUILDS]: #associatedconstant.GUILDS</span>
+    <span class="doccomment">/// [GUILDS]: Self::GUILDS</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guilds</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">GUILDS</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::GUILDS</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [GUILD_MEMBERS] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [GUILD_MEMBERS]: #associatedconstant.GUILD_MEMBERS</span>
+    <span class="doccomment">/// [GUILD_MEMBERS]: Self::GUILD_MEMBERS</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guild_members</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">GUILD_MEMBERS</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::GUILD_MEMBERS</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [GUILD_BANS] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [GUILD_BANS]: #associatedconstant.GUILD_BANS</span>
+    <span class="doccomment">/// [GUILD_BANS]: Self::GUILD_BANS</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guild_bans</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">GUILD_BANS</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::GUILD_BANS</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [GUILD_EMOJIS] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [GUILD_EMOJIS]: #associatedconstant.GUILD_EMOJIS</span>
+    <span class="doccomment">/// [GUILD_EMOJIS]: Self::GUILD_EMOJIS</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guild_emojis</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">GUILD_EMOJIS</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::GUILD_EMOJIS</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [GUILD_INTEGRATIONS] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [GUILD_INTEGRATIONS]: #associatedconstant.GUILD_INTEGRATIONS</span>
+    <span class="doccomment">/// [GUILD_INTEGRATIONS]: Self::GUILD_INTEGRATIONS</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guild_integrations</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">GUILD_INTEGRATIONS</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::GUILD_INTEGRATIONS</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [GUILD_WEBHOOKS] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [GUILD_WEBHOOKS]: #associatedconstant.GUILD_WEBHOOKS</span>
+    <span class="doccomment">/// [GUILD_WEBHOOKS]: Self::GUILD_WEBHOOKS</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guild_webhooks</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">GUILD_WEBHOOKS</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::GUILD_WEBHOOKS</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [GUILD_INVITES] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [GUILD_INVITES]: #associatedconstant.GUILD_INVITES</span>
+    <span class="doccomment">/// [GUILD_INVITES]: Self::GUILD_INVITES</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guild_invites</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">GUILD_INVITES</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::GUILD_INVITES</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [GUILD_VOICE_STATES] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [GUILD_VOICE_STATES]: #associatedconstant.GUILD_VOICE_STATES</span>
+    <span class="doccomment">/// [GUILD_VOICE_STATES]: Self::GUILD_VOICE_STATES</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guild_voice_states</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">GUILD_VOICE_STATES</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::GUILD_VOICE_STATES</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [GUILD_PRESENCES] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [GUILD_PRESENCES]: #associatedconstant.GUILD_PRESENCES</span>
+    <span class="doccomment">/// [GUILD_PRESENCES]: Self::GUILD_PRESENCES</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guild_presences</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">GUILD_PRESENCES</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::GUILD_PRESENCES</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [GUILD_MESSAGE_REACTIONS] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [GUILD_MESSAGE_REACTIONS]: #associatedconstant.GUILD_MESSAGE_REACTIONS</span>
+    <span class="doccomment">/// [GUILD_MESSAGE_REACTIONS]: Self::GUILD_MESSAGE_REACTIONS</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guild_message_reactions</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">GUILD_MESSAGE_REACTIONS</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::GUILD_MESSAGE_REACTIONS</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [GUILD_MESSAGE_TYPING] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [GUILD_MESSAGE_TYPING]: #associatedconstant.GUILD_MESSAGE_TYPING</span>
+    <span class="doccomment">/// [GUILD_MESSAGE_TYPING]: Self::GUILD_MESSAGE_TYPING</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guild_message_typing</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">GUILD_MESSAGE_TYPING</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::GUILD_MESSAGE_TYPING</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [DIRECT_MESSAGES] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [DIRECT_MESSAGES]: #associatedconstant.DIRECT_MESSAGES</span>
+    <span class="doccomment">/// [DIRECT_MESSAGES]: Self::DIRECT_MESSAGES</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">direct_messages</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">DIRECT_MESSAGES</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::DIRECT_MESSAGES</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [DIRECT_MESSAGE_REACTIONS] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [DIRECT_MESSAGE_REACTIONS]: #associatedconstant.DIRECT_MESSAGE_REACTIONS</span>
+    <span class="doccomment">/// [DIRECT_MESSAGE_REACTIONS]: Self::DIRECT_MESSAGE_REACTIONS</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">direct_message_reactions</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">DIRECT_MESSAGE_REACTIONS</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::DIRECT_MESSAGE_REACTIONS</span>)
     }
 
     <span class="doccomment">/// Shorthand for checking that the set of intents contains the</span>
     <span class="doccomment">/// [DIRECT_MESSAGE_TYPING] intent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [DIRECT_MESSAGE_TYPING]: #associatedconstant.DIRECT_MESSAGE_TYPING</span>
+    <span class="doccomment">/// [DIRECT_MESSAGE_TYPING]: Self::DIRECT_MESSAGE_TYPING</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">direct_message_typing</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span>::<span class="ident">DIRECT_MESSAGE_TYPING</span>)
+        <span class="self">self</span>.<span class="ident">contains</span>(<span class="self">Self</span><span class="ident">::DIRECT_MESSAGE_TYPING</span>)
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../../../";window.currentCrate = "serenity";</script><script src="../../../../../main.js"></script><script src="../../../../../source-script.js"></script><script src="../../../../../source-files.js"></script><script defer src="../../../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="serenity" data-search-index-js="../../../../../search-index.js" data-search-js="../../../../../search.js"></div>
+    <script src="../../../../../main.js"></script><script src="../../../../../source-script.js"></script><script src="../../../../../source-files.js"></script></body></html>

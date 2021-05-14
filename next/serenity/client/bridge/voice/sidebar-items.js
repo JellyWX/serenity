@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["ClientVoiceManager",""]]});
+initSidebarItems({"trait":[["VoiceGatewayManager","Interface for any compatible voice plugin."]]});

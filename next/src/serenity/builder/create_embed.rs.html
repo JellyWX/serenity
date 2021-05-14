@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/builder/create_embed.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>create_embed.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/builder/create_embed.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>create_embed.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../serenity/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../serenity/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
+                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -599,21 +599,7 @@
 <span id="596">596</span>
 <span id="597">597</span>
 <span id="598">598</span>
-<span id="599">599</span>
-<span id="600">600</span>
-<span id="601">601</span>
-<span id="602">602</span>
-<span id="603">603</span>
-<span id="604">604</span>
-<span id="605">605</span>
-<span id="606">606</span>
-<span id="607">607</span>
-<span id="608">608</span>
-<span id="609">609</span>
-<span id="610">610</span>
-<span id="611">611</span>
-<span id="612">612</span>
-</pre><div class="example-wrap"><pre class="rust ">
+</pre><pre class="rust">
 <span class="doccomment">//! Developer note:</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This is a set of embed builders for rich embeds.</span>
@@ -626,23 +612,21 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Documentation for embeds can be found [here].</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! [`ChannelId::send_message`]: ../model/id/struct.ChannelId.html#method.send_message</span>
-<span class="doccomment">//! [`CreateEmbed`]: struct.CreateEmbed.html</span>
-<span class="doccomment">//! [`ExecuteWebhook::embeds`]: struct.ExecuteWebhook.html#method.embeds</span>
+<span class="doccomment">//! [`ChannelId::send_message`]: crate::model::id::ChannelId::send_message</span>
+<span class="doccomment">//! [`ExecuteWebhook::embeds`]: crate::builder::ExecuteWebhook::embeds</span>
 <span class="doccomment">//! [here]: https://discord.com/developers/docs/resources/channel#embed-object</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">internal</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">model</span>::<span class="ident">channel</span>::<span class="ident">Embed</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">utils</span>;
+<span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
+<span class="kw">use</span> <span class="ident">std::fmt::Display</span>;
 
 <span class="kw">use</span> <span class="ident">chrono</span>::{<span class="ident">DateTime</span>, <span class="ident">TimeZone</span>};
-<span class="kw">use</span> <span class="ident">serde_json</span>::{<span class="ident">json</span>, <span class="ident">Value</span>};
 
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Display</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">HashMap</span>;
-
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::json::Value</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::json</span>::{<span class="ident">from_number</span>, <span class="ident">json</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::model::channel::Embed</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::utils</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;utils&quot;</span>)]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">utils</span>::<span class="ident">Colour</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::utils::Colour</span>;
 
 <span class="doccomment">/// A builder to create a fake [`Embed`] object, for use with the</span>
 <span class="doccomment">/// [`ChannelId::send_message`] and [`ExecuteWebhook::embeds`] methods.</span>
@@ -652,9 +636,9 @@
 <span class="doccomment">/// Refer to the documentation for [`ChannelId::send_message`] for a very in-depth</span>
 <span class="doccomment">/// example on how to use this.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`ChannelId::send_message`]: ../model/id/struct.ChannelId.html#method.send_message</span>
-<span class="doccomment">/// [`Embed`]: ../model/channel/struct.Embed.html</span>
-<span class="doccomment">/// [`ExecuteWebhook::embeds`]: struct.ExecuteWebhook.html#method.embeds</span>
+<span class="doccomment">/// [`ChannelId::send_message`]: crate::model::id::ChannelId::send_message</span>
+<span class="doccomment">/// [`Embed`]: crate::model::channel::Embed</span>
+<span class="doccomment">/// [`ExecuteWebhook::embeds`]: crate::builder::ExecuteWebhook::embeds</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateEmbed</span>(<span class="kw">pub</span> <span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>, <span class="ident">Value</span><span class="op">&gt;</span>);
 
@@ -663,28 +647,26 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Refer to the documentation for [`CreateEmbedAuthor`] for more</span>
     <span class="doccomment">/// information.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`CreateEmbedAuthor`]: struct.CreateEmbedAuthor.html</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">author</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>
-        <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CreateEmbedAuthor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CreateEmbedAuthor</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">author</span> <span class="op">=</span> <span class="ident">CreateEmbedAuthor</span>::<span class="ident">default</span>();
+    <span class="kw">where</span>
+        <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CreateEmbedAuthor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CreateEmbedAuthor</span>,
+    {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">author</span> <span class="op">=</span> <span class="ident">CreateEmbedAuthor::default</span>();
         <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">author</span>);
         <span class="self">self</span>.<span class="ident">set_author</span>(<span class="ident">author</span>)
     }
 
     <span class="doccomment">/// Set the author of the embed.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_author</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">author</span>: <span class="ident">CreateEmbedAuthor</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">hashmap_to_json_map</span>(<span class="ident">author</span>.<span class="number">0</span>);
+        <span class="kw">let</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">utils::hashmap_to_json_map</span>(<span class="ident">author</span>.<span class="number">0</span>);
 
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;author&quot;</span>, <span class="ident">Value</span>::<span class="ident">Object</span>(<span class="ident">map</span>));
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;author&quot;</span>, <span class="ident">Value::from</span>(<span class="ident">map</span>));
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// Set the colour of the left-hand side of the embed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is an alias of [`colour`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`colour`]: #method.colour</span>
+    <span class="doccomment">/// This is an alias of [`Self::colour`].</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;utils&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color</span><span class="op">&lt;</span><span class="ident">C</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Colour</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">colour</span>: <span class="ident">C</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
@@ -702,17 +684,12 @@
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;utils&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">_colour</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">colour</span>: <span class="ident">Colour</span>) {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(
-            <span class="string">&quot;color&quot;</span>,
-            <span class="ident">Value</span>::<span class="ident">Number</span>(<span class="ident">Number</span>::<span class="ident">from</span>(<span class="ident">u64</span>::<span class="ident">from</span>(<span class="ident">colour</span>.<span class="number">0</span>))),
-        );
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;color&quot;</span>, <span class="ident">from_number</span>(<span class="ident">u64::from</span>(<span class="ident">colour</span>.<span class="number">0</span>)));
     }
 
     <span class="doccomment">/// Set the colour of the left-hand side of the embed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an alias of [`colour`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`colour`]: #method.colour</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;utils&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">colour</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
@@ -723,7 +700,7 @@
     <span class="doccomment">/// Set the colour of the left-hand side of the embed.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;utils&quot;</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">colour</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">colour</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;color&quot;</span>, <span class="ident">Value</span>::<span class="ident">Number</span>(<span class="ident">Number</span>::<span class="ident">from</span>(<span class="ident">colour</span>)));
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;color&quot;</span>, <span class="ident">from_number</span>(<span class="ident">colour</span>));
         <span class="self">self</span>
     }
 
@@ -732,7 +709,7 @@
     <span class="doccomment">/// **Note**: This can&#39;t be longer than 2048 characters.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">description</span><span class="op">&lt;</span><span class="ident">D</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">description</span>: <span class="ident">D</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;description&quot;</span>, <span class="ident">Value</span>::<span class="ident">String</span>(<span class="ident">description</span>.<span class="ident">to_string</span>()));
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;description&quot;</span>, <span class="ident">Value::from</span>(<span class="ident">description</span>.<span class="ident">to_string</span>()));
         <span class="self">self</span>
     }
 
@@ -742,20 +719,21 @@
     <span class="doccomment">/// **Note**: Maximum amount of characters you can put is 256 in a field</span>
     <span class="doccomment">/// name and 1024 in a field value.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">field</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="ident">T</span>, <span class="ident">value</span>: <span class="ident">U</span>, <span class="ident">inline</span>: <span class="ident">bool</span>)  <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>
-        <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">ToString</span>, <span class="ident">U</span>: <span class="ident">ToString</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">field</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="ident">T</span>, <span class="ident">value</span>: <span class="ident">U</span>, <span class="ident">inline</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>
+    <span class="kw">where</span>
+        <span class="ident">T</span>: <span class="ident">ToString</span>,
+        <span class="ident">U</span>: <span class="ident">ToString</span>,
+    {
         <span class="self">self</span>.<span class="ident">_field</span>(<span class="ident">name</span>.<span class="ident">to_string</span>(), <span class="ident">value</span>.<span class="ident">to_string</span>(), <span class="ident">inline</span>);
         <span class="self">self</span>
     }
 
     <span class="kw">fn</span> <span class="ident">_field</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="ident">String</span>, <span class="ident">value</span>: <span class="ident">String</span>, <span class="ident">inline</span>: <span class="ident">bool</span>) {
         {
-            <span class="kw">let</span> <span class="ident">entry</span> <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>
-                .<span class="ident">entry</span>(<span class="string">&quot;fields&quot;</span>)
-                .<span class="ident">or_insert_with</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Value</span>::<span class="ident">Array</span>(<span class="macro">vec</span><span class="macro">!</span>[]));
+            <span class="kw">let</span> <span class="ident">entry</span> <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">entry</span>(<span class="string">&quot;fields&quot;</span>).<span class="ident">or_insert_with</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Value::from</span>(<span class="ident">Vec</span>::<span class="op">&lt;</span><span class="ident">Value</span><span class="op">&gt;</span><span class="ident">::new</span>()));
 
-            <span class="kw">if</span> <span class="kw">let</span> <span class="ident">Value</span>::<span class="ident">Array</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">inner</span>) <span class="op">=</span> <span class="kw-2">*</span><span class="ident">entry</span> {
-                <span class="ident">inner</span>.<span class="ident">push</span>(<span class="macro">json</span><span class="macro">!</span>({
+            <span class="kw">if</span> <span class="kw">let</span> <span class="ident">Value::Array</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">inner</span>) <span class="op">=</span> <span class="kw-2">*</span><span class="ident">entry</span> {
+                <span class="ident">inner</span>.<span class="ident">push</span>(<span class="macro">json!</span>({
                     <span class="string">&quot;inline&quot;</span>: <span class="ident">inline</span>,
                     <span class="string">&quot;name&quot;</span>: <span class="ident">name</span>,
                     <span class="string">&quot;value&quot;</span>: <span class="ident">value</span>,
@@ -766,13 +744,13 @@
 
     <span class="doccomment">/// Adds multiple fields at once.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is sugar to reduce the need of calling [`field`] manually multiple times.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`field`]: #method.field</span>
+    <span class="doccomment">/// This is sugar to reduce the need of calling [`Self::field`] manually multiple times.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fields</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span>, <span class="ident">It</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">fields</span>: <span class="ident">It</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>
-        <span class="kw">where</span> <span class="ident">It</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span>(<span class="ident">T</span>, <span class="ident">U</span>, <span class="ident">bool</span>)<span class="op">&gt;</span>,
-              <span class="ident">T</span>: <span class="ident">ToString</span>,
-              <span class="ident">U</span>: <span class="ident">ToString</span> {
+    <span class="kw">where</span>
+        <span class="ident">It</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> (<span class="ident">T</span>, <span class="ident">U</span>, <span class="ident">bool</span>)<span class="op">&gt;</span>,
+        <span class="ident">T</span>: <span class="ident">ToString</span>,
+        <span class="ident">U</span>: <span class="ident">ToString</span>,
+    {
         <span class="kw">for</span> (<span class="ident">name</span>, <span class="ident">value</span>, <span class="ident">inline</span>) <span class="kw">in</span> <span class="ident">fields</span> {
             <span class="self">self</span>.<span class="ident">field</span>(<span class="ident">name</span>, <span class="ident">value</span>, <span class="ident">inline</span>);
         }
@@ -784,11 +762,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Refer to the documentation for [`CreateEmbedFooter`] for more</span>
     <span class="doccomment">/// information.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`CreateEmbedFooter`]: struct.CreateEmbedFooter.html</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">footer</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>
-        <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CreateEmbedFooter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CreateEmbedFooter</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">create_embed_footer</span> <span class="op">=</span> <span class="ident">CreateEmbedFooter</span>::<span class="ident">default</span>();
+    <span class="kw">where</span>
+        <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CreateEmbedFooter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CreateEmbedFooter</span>,
+    {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">create_embed_footer</span> <span class="op">=</span> <span class="ident">CreateEmbedFooter::default</span>();
         <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">create_embed_footer</span>);
         <span class="self">self</span>.<span class="ident">set_footer</span>(<span class="ident">create_embed_footer</span>)
     }
@@ -796,14 +774,14 @@
     <span class="doccomment">/// Set the footer of the embed.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_footer</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">create_embed_footer</span>: <span class="ident">CreateEmbedFooter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">footer</span> <span class="op">=</span> <span class="ident">create_embed_footer</span>.<span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">hashmap_to_json_map</span>(<span class="ident">footer</span>);
+        <span class="kw">let</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">utils::hashmap_to_json_map</span>(<span class="ident">footer</span>);
 
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;footer&quot;</span>, <span class="ident">Value</span>::<span class="ident">Object</span>(<span class="ident">map</span>));
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;footer&quot;</span>, <span class="ident">Value::from</span>(<span class="ident">map</span>));
         <span class="self">self</span>
     }
 
     <span class="kw">fn</span> <span class="ident">url_object</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>, <span class="ident">url</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">obj</span> <span class="op">=</span> <span class="macro">json</span><span class="macro">!</span>({
+        <span class="kw">let</span> <span class="ident">obj</span> <span class="op">=</span> <span class="macro">json!</span>({
             <span class="string">&quot;url&quot;</span>: <span class="ident">url</span>,
         });
 
@@ -921,7 +899,7 @@
     <span class="doccomment">///     }</span>
     <span class="doccomment">/// }</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// let mut client =Client::builder(&quot;token&quot;).event_handler(Handler).await?;</span>
+    <span class="doccomment">/// let mut client = Client::builder(&quot;token&quot;).event_handler(Handler).await?;</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// client.start().await?;</span>
     <span class="doccomment">/// #     Ok(())</span>
@@ -934,31 +912,29 @@
     }
 
     <span class="kw">fn</span> <span class="ident">_timestamp</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">timestamp</span>: <span class="ident">Timestamp</span>) {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;timestamp&quot;</span>, <span class="ident">Value</span>::<span class="ident">String</span>(<span class="ident">timestamp</span>.<span class="ident">ts</span>));
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;timestamp&quot;</span>, <span class="ident">Value::from</span>(<span class="ident">timestamp</span>.<span class="ident">ts</span>));
     }
 
     <span class="doccomment">/// Set the title of the embed.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">title</span><span class="op">&lt;</span><span class="ident">D</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">title</span>: <span class="ident">D</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;title&quot;</span>, <span class="ident">Value</span>::<span class="ident">String</span>(<span class="ident">title</span>.<span class="ident">to_string</span>()));
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;title&quot;</span>, <span class="ident">Value::from</span>(<span class="ident">title</span>.<span class="ident">to_string</span>()));
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// Set the URL to direct to when clicking on the title.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">url</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">url</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;url&quot;</span>, <span class="ident">Value</span>::<span class="ident">String</span>(<span class="ident">url</span>.<span class="ident">to_string</span>()));
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;url&quot;</span>, <span class="ident">Value::from</span>(<span class="ident">url</span>.<span class="ident">to_string</span>()));
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Same as calling [`image`] with &quot;attachment://filename.(jpg, png)&quot;.</span>
+    <span class="doccomment">/// Same as calling [`Self::image`] with &quot;attachment://filename.(jpg, png)&quot;.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note however, you have to be sure you set an attachment (with [`ChannelId::send_files`])</span>
     <span class="doccomment">/// with the provided filename. Or else this won&#39;t work.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ChannelId::send_files`]: ../model/id/struct.ChannelId.html#send_files</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`image`]: #method.image</span>
+    <span class="doccomment">/// [`ChannelId::send_files`]: crate::model::id::ChannelId::send_files</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">attachment</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">filename</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">filename</span> <span class="op">=</span> <span class="ident">filename</span>.<span class="ident">to_string</span>();
@@ -972,8 +948,8 @@
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">CreateEmbed</span> {
     <span class="doccomment">/// Creates a builder with default values, setting the `type` to `rich`.</span>
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CreateEmbed</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();
-        <span class="ident">map</span>.<span class="ident">insert</span>(<span class="string">&quot;type&quot;</span>, <span class="ident">Value</span>::<span class="ident">String</span>(<span class="string">&quot;rich&quot;</span>.<span class="ident">to_string</span>()));
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">HashMap::new</span>();
+        <span class="ident">map</span>.<span class="ident">insert</span>(<span class="string">&quot;type&quot;</span>, <span class="ident">Value::from</span>(<span class="string">&quot;rich&quot;</span>.<span class="ident">to_string</span>()));
 
         <span class="ident">CreateEmbed</span>(<span class="ident">map</span>)
     }
@@ -984,7 +960,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Some values - such as Proxy URLs - are not preserved.</span>
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">embed</span>: <span class="ident">Embed</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">CreateEmbed</span>::<span class="ident">default</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">CreateEmbed::default</span>();
         <span class="ident">b</span>.<span class="ident">colour</span>(<span class="ident">embed</span>.<span class="ident">colour</span>);
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">author</span>) <span class="op">=</span> <span class="ident">embed</span>.<span class="ident">author</span> {
@@ -1050,30 +1026,28 @@
 <span class="doccomment">/// A builder to create a fake [`Embed`] object&#39;s author, for use with the</span>
 <span class="doccomment">/// [`CreateEmbed::author`] method.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Requires that you specify a [`name`].</span>
+<span class="doccomment">/// Requires that you specify a [`Self::name`].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`Embed`]: ../model/channel/struct.Embed.html</span>
-<span class="doccomment">/// [`CreateEmbed::author`]: struct.CreateEmbed.html#method.author</span>
-<span class="doccomment">/// [`name`]: #method.name</span>
+<span class="doccomment">/// [`Embed`]: crate::model::channel::Embed</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateEmbedAuthor</span>(<span class="kw">pub</span> <span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>, <span class="ident">Value</span><span class="op">&gt;</span>);
 
 <span class="kw">impl</span> <span class="ident">CreateEmbedAuthor</span> {
     <span class="doccomment">/// Set the URL of the author&#39;s icon.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">icon_url</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">icon_url</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;icon_url&quot;</span>, <span class="ident">Value</span>::<span class="ident">String</span>(<span class="ident">icon_url</span>.<span class="ident">to_string</span>()));
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;icon_url&quot;</span>, <span class="ident">Value::from</span>(<span class="ident">icon_url</span>.<span class="ident">to_string</span>()));
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// Set the author&#39;s name.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;name&quot;</span>, <span class="ident">Value</span>::<span class="ident">String</span>(<span class="ident">name</span>.<span class="ident">to_string</span>()));
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;name&quot;</span>, <span class="ident">Value::from</span>(<span class="ident">name</span>.<span class="ident">to_string</span>()));
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// Set the author&#39;s URL.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">url</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">url</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;url&quot;</span>, <span class="ident">Value</span>::<span class="ident">String</span>(<span class="ident">url</span>.<span class="ident">to_string</span>()));
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;url&quot;</span>, <span class="ident">Value::from</span>(<span class="ident">url</span>.<span class="ident">to_string</span>()));
         <span class="self">self</span>
     }
 }
@@ -1083,21 +1057,20 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This does not require any field be set.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`Embed`]: ../model/channel/struct.Embed.html</span>
-<span class="doccomment">/// [`CreateEmbed::footer`]: struct.CreateEmbed.html#method.footer</span>
+<span class="doccomment">/// [`Embed`]: crate::model::channel::Embed</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateEmbedFooter</span>(<span class="kw">pub</span> <span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>, <span class="ident">Value</span><span class="op">&gt;</span>);
 
 <span class="kw">impl</span> <span class="ident">CreateEmbedFooter</span> {
     <span class="doccomment">/// Set the icon URL&#39;s value. This only supports HTTP(S).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">icon_url</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">icon_url</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;icon_url&quot;</span>, <span class="ident">Value</span>::<span class="ident">String</span>(<span class="ident">icon_url</span>.<span class="ident">to_string</span>()));
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;icon_url&quot;</span>, <span class="ident">Value::from</span>(<span class="ident">icon_url</span>.<span class="ident">to_string</span>()));
         <span class="self">self</span>
     }
 
     <span class="doccomment">/// Set the footer&#39;s text.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;text&quot;</span>, <span class="ident">Value</span>::<span class="ident">String</span>(<span class="ident">text</span>.<span class="ident">to_string</span>()));
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="string">&quot;text&quot;</span>, <span class="ident">Value::from</span>(<span class="ident">text</span>.<span class="ident">to_string</span>()));
         <span class="self">self</span>
     }
 }
@@ -1124,7 +1097,9 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Tz</span>: <span class="ident">TimeZone</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Tz</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Timestamp</span>
-    <span class="kw">where</span> <span class="ident">Tz</span>::<span class="ident">Offset</span>: <span class="ident">Display</span> {
+<span class="kw">where</span>
+    <span class="ident">Tz::Offset</span>: <span class="ident">Display</span>,
+{
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">dt</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Tz</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">ts</span>: <span class="ident">dt</span>.<span class="ident">to_rfc3339</span>(),
@@ -1134,43 +1109,42 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">model</span>::<span class="ident">channel</span>::{<span class="ident">Embed</span>, <span class="ident">EmbedField</span>, <span class="ident">EmbedFooter</span>, <span class="ident">EmbedImage</span>, <span class="ident">EmbedVideo</span>},
-        <span class="ident">utils</span>::{<span class="self">self</span>, <span class="ident">Colour</span>}};
-    <span class="kw">use</span> <span class="ident">serde_json</span>::{<span class="ident">json</span>, <span class="ident">Value</span>};
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">CreateEmbed</span>;
+    <span class="kw">use</span> <span class="kw">super</span><span class="ident">::CreateEmbed</span>;
+    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::json::json</span>;
+    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::json::Value</span>;
+    <span class="kw">use</span> <span class="kw">crate</span>::{
+        <span class="ident">model::channel</span>::{<span class="ident">Embed</span>, <span class="ident">EmbedField</span>, <span class="ident">EmbedFooter</span>, <span class="ident">EmbedImage</span>, <span class="ident">EmbedVideo</span>},
+        <span class="ident">utils</span>::{<span class="self">self</span>, <span class="ident">Colour</span>},
+    };
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_from_embed</span>() {
         <span class="kw">let</span> <span class="ident">embed</span> <span class="op">=</span> <span class="ident">Embed</span> {
             <span class="ident">author</span>: <span class="prelude-val">None</span>,
-            <span class="ident">colour</span>: <span class="ident">Colour</span>::<span class="ident">new</span>(<span class="number">0xFF0011</span>),
+            <span class="ident">colour</span>: <span class="ident">Colour::new</span>(<span class="number">0xFF0011</span>),
             <span class="ident">description</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;This is a test description&quot;</span>.<span class="ident">to_string</span>()),
-            <span class="ident">fields</span>: <span class="macro">vec</span><span class="macro">!</span>[
+            <span class="ident">fields</span>: <span class="macro">vec!</span>[
                 <span class="ident">EmbedField</span> {
                     <span class="ident">inline</span>: <span class="bool-val">false</span>,
                     <span class="ident">name</span>: <span class="string">&quot;a&quot;</span>.<span class="ident">to_string</span>(),
                     <span class="ident">value</span>: <span class="string">&quot;b&quot;</span>.<span class="ident">to_string</span>(),
-                    <span class="ident">_nonexhaustive</span>: (),
                 },
                 <span class="ident">EmbedField</span> {
                     <span class="ident">inline</span>: <span class="bool-val">true</span>,
                     <span class="ident">name</span>: <span class="string">&quot;c&quot;</span>.<span class="ident">to_string</span>(),
                     <span class="ident">value</span>: <span class="string">&quot;z&quot;</span>.<span class="ident">to_string</span>(),
-                    <span class="ident">_nonexhaustive</span>: (),
                 },
             ],
             <span class="ident">footer</span>: <span class="prelude-val">Some</span>(<span class="ident">EmbedFooter</span> {
                 <span class="ident">icon_url</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;https://i.imgur.com/XfWpfCV.gif&quot;</span>.<span class="ident">to_string</span>()),
                 <span class="ident">proxy_icon_url</span>: <span class="prelude-val">None</span>,
                 <span class="ident">text</span>: <span class="string">&quot;This is a hakase footer&quot;</span>.<span class="ident">to_string</span>(),
-                <span class="ident">_nonexhaustive</span>: (),
             }),
             <span class="ident">image</span>: <span class="prelude-val">Some</span>(<span class="ident">EmbedImage</span> {
                 <span class="ident">height</span>: <span class="number">213</span>,
                 <span class="ident">proxy_url</span>: <span class="string">&quot;a&quot;</span>.<span class="ident">to_string</span>(),
                 <span class="ident">url</span>: <span class="string">&quot;https://i.imgur.com/XfWpfCV.gif&quot;</span>.<span class="ident">to_string</span>(),
                 <span class="ident">width</span>: <span class="number">224</span>,
-                <span class="ident">_nonexhaustive</span>: (),
             }),
             <span class="ident">kind</span>: <span class="string">&quot;rich&quot;</span>.<span class="ident">to_string</span>(),
             <span class="ident">provider</span>: <span class="prelude-val">None</span>,
@@ -1182,21 +1156,19 @@
                 <span class="ident">height</span>: <span class="number">213</span>,
                 <span class="ident">url</span>: <span class="string">&quot;https://i.imgur.com/XfWpfCV.mp4&quot;</span>.<span class="ident">to_string</span>(),
                 <span class="ident">width</span>: <span class="number">224</span>,
-                <span class="ident">_nonexhaustive</span>: (),
             }),
-            <span class="ident">_nonexhaustive</span>: (),
         };
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">CreateEmbed</span>::<span class="ident">from</span>(<span class="ident">embed</span>);
-            <span class="ident">builder</span>.<span class="ident">colour</span>(<span class="number">0xFF0011</span>);
-            <span class="ident">builder</span>.<span class="ident">description</span>(<span class="string">&quot;This is a hakase description&quot;</span>);
-            <span class="ident">builder</span>.<span class="ident">image</span>(<span class="string">&quot;https://i.imgur.com/XfWpfCV.gif&quot;</span>);
-            <span class="ident">builder</span>.<span class="ident">title</span>(<span class="string">&quot;still a hakase&quot;</span>);
-            <span class="ident">builder</span>.<span class="ident">url</span>(<span class="string">&quot;https://i.imgur.com/XfWpfCV.gif&quot;</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">CreateEmbed::from</span>(<span class="ident">embed</span>);
+        <span class="ident">builder</span>.<span class="ident">colour</span>(<span class="number">0xFF0011</span>);
+        <span class="ident">builder</span>.<span class="ident">description</span>(<span class="string">&quot;This is a hakase description&quot;</span>);
+        <span class="ident">builder</span>.<span class="ident">image</span>(<span class="string">&quot;https://i.imgur.com/XfWpfCV.gif&quot;</span>);
+        <span class="ident">builder</span>.<span class="ident">title</span>(<span class="string">&quot;still a hakase&quot;</span>);
+        <span class="ident">builder</span>.<span class="ident">url</span>(<span class="string">&quot;https://i.imgur.com/XfWpfCV.gif&quot;</span>);
 
-        <span class="kw">let</span> <span class="ident">built</span> <span class="op">=</span> <span class="ident">Value</span>::<span class="ident">Object</span>(<span class="ident">utils</span>::<span class="ident">hashmap_to_json_map</span>(<span class="ident">builder</span>.<span class="number">0</span>));
+        <span class="kw">let</span> <span class="ident">built</span> <span class="op">=</span> <span class="ident">Value::from</span>(<span class="ident">utils::hashmap_to_json_map</span>(<span class="ident">builder</span>.<span class="number">0</span>));
 
-        <span class="kw">let</span> <span class="ident">obj</span> <span class="op">=</span> <span class="macro">json</span><span class="macro">!</span>({
+        <span class="kw">let</span> <span class="ident">obj</span> <span class="op">=</span> <span class="macro">json!</span>({
             <span class="string">&quot;color&quot;</span>: <span class="number">0xFF0011</span>,
             <span class="string">&quot;description&quot;</span>: <span class="string">&quot;This is a hakase description&quot;</span>,
             <span class="string">&quot;title&quot;</span>: <span class="string">&quot;still a hakase&quot;</span>,
@@ -1223,8 +1195,9 @@
             }
         });
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">built</span>, <span class="ident">obj</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">built</span>, <span class="ident">obj</span>);
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "serenity";</script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="serenity" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>

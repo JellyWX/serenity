@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/model/guild/emoji.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>emoji.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script src="../../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/guild/emoji.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>emoji.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../../serenity/index.html'><div class='logo-container rust-logo'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
-                <a id="settings-menu" href="../../../../settings.html"><img src="../../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../serenity/index.html'><div class='logo-container rust-logo'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
+                <a id="settings-menu" href="../../../../settings.html"><img src="../../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -235,36 +235,52 @@
 <span id="232">232</span>
 <span id="233">233</span>
 <span id="234">234</span>
-</pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>::{
-    <span class="ident">Display</span>,
-    <span class="ident">Formatter</span>,
-    <span class="prelude-ty">Result</span> <span class="kw">as</span> <span class="ident">FmtResult</span>,
-    <span class="ident">Write</span> <span class="kw">as</span> <span class="ident">FmtWrite</span>
-};
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">model</span>::<span class="ident">id</span>::{<span class="ident">EmojiId</span>, <span class="ident">RoleId</span>};
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+</pre><pre class="rust">
+<span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="ident">Display</span>, <span class="ident">Formatter</span>, <span class="prelude-ty">Result</span> <span class="kw">as</span> <span class="ident">FmtResult</span>, <span class="ident">Write</span> <span class="kw">as</span> <span class="ident">FmtWrite</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>))]</span>
-<span class="kw">use</span> <span class="ident">serde_json</span>::<span class="ident">json</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::cache::Cache</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::http::Http</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>))]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">internal</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::internal::prelude</span>::<span class="kw-2">*</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>))]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">model</span>::<span class="ident">ModelError</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::json::json</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>))]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">model</span>::<span class="ident">id</span>::<span class="ident">GuildId</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::model::id::GuildId</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::model::id</span>::{<span class="ident">EmojiId</span>, <span class="ident">RoleId</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::model::user::User</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::model::utils::default_true</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>))]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">cache</span>::<span class="ident">Cache</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>))]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">http</span>::<span class="ident">CacheHttp</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::model::ModelError</span>;
 
 <span class="doccomment">/// Represents a custom guild emoji, which can either be created using the API,</span>
 <span class="doccomment">/// or via an integration. Emojis created using the API only work within the</span>
 <span class="doccomment">/// guild it was created in.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>)]</span>
+<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Emoji</span> {
     <span class="doccomment">/// Whether the emoji is animated.</span>
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span>)]</span>
     <span class="kw">pub</span> <span class="ident">animated</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Whether the emoji can be used. This may be false when the guild loses boosts,</span>
+    <span class="doccomment">/// reducing the emoji limit.</span>
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;default_true&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="ident">available</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// The Id of the emoji.</span>
     <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">EmojiId</span>,
     <span class="doccomment">/// The name of the emoji. It must be at least 2 characters long and can</span>
@@ -272,44 +288,44 @@
     <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Whether the emoji is managed via an [`Integration`] service.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`Integration`]: struct.Integration.html</span>
+    <span class="doccomment">/// [`Integration`]: super::Integration</span>
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span>)]</span>
     <span class="kw">pub</span> <span class="ident">managed</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// Whether the emoji name needs to be surrounded by colons in order to be</span>
     <span class="doccomment">/// used by the client.</span>
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span>)]</span>
     <span class="kw">pub</span> <span class="ident">require_colons</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// A list of [`Role`]s that are allowed to use the emoji. If there are no</span>
     <span class="doccomment">/// roles specified, then usage is unrestricted.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`Role`]: struct.Role.html</span>
+    <span class="doccomment">/// [`Role`]: super::Role</span>
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span>)]</span>
     <span class="kw">pub</span> <span class="ident">roles</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RoleId</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">_nonexhaustive</span>: (),
+    <span class="doccomment">/// The user who created the emoji.</span>
+    <span class="kw">pub</span> <span class="ident">user</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">User</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>)]</span>
 <span class="kw">impl</span> <span class="ident">Emoji</span> {
     <span class="doccomment">/// Deletes the emoji.</span>
+    <span class="doccomment">/// This method requires the cache to fetch the guild ID.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// **Note**: The [Manage Emojis] permission is required.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// **Note**: Only user accounts may use this method.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [Manage Emojis]:</span>
-    <span class="doccomment">/// ../permissions/struct.Permissions.html#associatedconstant.MANAGE_EMOJIS</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Examples</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Delete a given emoji:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```rust,no_run</span>
-    <span class="doccomment">/// # use serde_json::json;</span>
+    <span class="doccomment">/// # use serde_json::{json, from_value};</span>
     <span class="doccomment">/// # use serenity::framework::standard::{CommandResult, macros::command};</span>
     <span class="doccomment">/// # use serenity::client::Context;</span>
     <span class="doccomment">/// # use serenity::model::prelude::{EmojiId, Emoji, Role};</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// # #[command]</span>
     <span class="doccomment">/// # async fn example(ctx: &amp;Context) -&gt; CommandResult {</span>
-    <span class="doccomment">/// #     let mut emoji = serde_json::from_value::&lt;Emoji&gt;(json!({</span>
+    <span class="doccomment">/// #     let mut emoji = from_value::&lt;Emoji&gt;(json!({</span>
     <span class="doccomment">/// #         &quot;animated&quot;: false,</span>
     <span class="doccomment">/// #         &quot;id&quot;: EmojiId(7),</span>
     <span class="doccomment">/// #         &quot;name&quot;: &quot;blobface&quot;,</span>
@@ -326,55 +342,68 @@
     <span class="doccomment">/// #    Ok(())</span>
     <span class="doccomment">/// # }</span>
     <span class="doccomment">/// ```</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Errors</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Returns [`Error::Http`] if the current user lacks permission,</span>
+    <span class="doccomment">/// or may return [`ModelError::ItemMissing`] if the emoji is not</span>
+    <span class="doccomment">/// in the cache.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [Manage Emojis]: crate::model::permissions::Permissions::MANAGE_EMOJIS</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">delete</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cache_http</span>: <span class="kw">impl</span> <span class="ident">CacheHttp</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">cache</span> <span class="op">=</span> <span class="ident">cache_http</span>.<span class="ident">cache</span>().<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="ident">Model</span>(<span class="ident">ModelError</span>::<span class="ident">ItemMissing</span>))<span class="question-mark">?</span>;
-
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">find_guild_id</span>(<span class="kw-2">&amp;</span><span class="ident">cache</span>).<span class="ident">await</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">guild_id</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">cache_http</span>.<span class="ident">http</span>().<span class="ident">delete_emoji</span>(<span class="ident">guild_id</span>.<span class="number">0</span>, <span class="self">self</span>.<span class="ident">id</span>.<span class="number">0</span>).<span class="ident">await</span>,
-            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">Model</span>(<span class="ident">ModelError</span>::<span class="ident">ItemMissing</span>)),
+    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">delete</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Cache</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Http</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cache_http</span>: <span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">find_guild_id</span>(<span class="kw-2">&amp;</span><span class="ident">cache_http</span>).<span class="kw">await</span> {
+            <span class="prelude-val">Some</span>(<span class="ident">guild_id</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">AsRef</span>::<span class="op">&lt;</span><span class="ident">Http</span><span class="op">&gt;</span><span class="ident">::as_ref</span>(<span class="kw-2">&amp;</span><span class="ident">cache_http</span>).<span class="ident">delete_emoji</span>(<span class="ident">guild_id</span>.<span class="number">0</span>, <span class="self">self</span>.<span class="ident">id</span>.<span class="number">0</span>).<span class="kw">await</span>
+            },
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error::Model</span>(<span class="ident">ModelError::ItemMissing</span>)),
         }
     }
 
     <span class="doccomment">/// Edits the emoji by updating it with a new name.</span>
+    <span class="doccomment">/// This method requires the cache to fetch the guild ID.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// **Note**: The [Manage Emojis] permission is required.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// **Note**: Only user accounts may use this method.</span>
+    <span class="doccomment">/// # Errors</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [Manage Emojis]: ../permissions/struct.Permissions.html#associatedconstant.MANAGE_EMOJIS</span>
+    <span class="doccomment">/// Returns [`Error::Http`] if the current user lacks permission,</span>
+    <span class="doccomment">/// or if an invalid name is given.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [Manage Emojis]: crate::model::permissions::Permissions::MANAGE_EMOJIS</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">edit</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cache_http</span>: <span class="kw">impl</span> <span class="ident">CacheHttp</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">cache</span> <span class="op">=</span> <span class="ident">cache_http</span>.<span class="ident">cache</span>().<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="ident">Model</span>(<span class="ident">ModelError</span>::<span class="ident">ItemMissing</span>))<span class="question-mark">?</span>;
-
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">find_guild_id</span>(<span class="kw-2">&amp;</span><span class="ident">cache</span>).<span class="ident">await</span> {
+    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">edit</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Cache</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Http</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
+        <span class="ident">cache_http</span>: <span class="ident">T</span>,
+        <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">find_guild_id</span>(<span class="kw-2">&amp;</span><span class="ident">cache_http</span>).<span class="kw">await</span> {
             <span class="prelude-val">Some</span>(<span class="ident">guild_id</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="kw">let</span> <span class="ident">map</span> <span class="op">=</span> <span class="macro">json</span><span class="macro">!</span>({
+                <span class="kw">let</span> <span class="ident">map</span> <span class="op">=</span> <span class="macro">json!</span>({
                     <span class="string">&quot;name&quot;</span>: <span class="ident">name</span>,
                 });
 
-                <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident">cache_http</span>
-                    .<span class="ident">http</span>()
+                <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident">AsRef</span>::<span class="op">&lt;</span><span class="ident">Http</span><span class="op">&gt;</span><span class="ident">::as_ref</span>(<span class="kw-2">&amp;</span><span class="ident">cache_http</span>)
                     .<span class="ident">edit_emoji</span>(<span class="ident">guild_id</span>.<span class="number">0</span>, <span class="self">self</span>.<span class="ident">id</span>.<span class="number">0</span>, <span class="kw-2">&amp;</span><span class="ident">map</span>)
-                    .<span class="ident">await</span><span class="question-mark">?</span>;
+                    .<span class="kw">await</span><span class="question-mark">?</span>;
 
                 <span class="prelude-val">Ok</span>(())
             },
-            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">Model</span>(<span class="ident">ModelError</span>::<span class="ident">ItemMissing</span>)),
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error::Model</span>(<span class="ident">ModelError::ItemMissing</span>)),
         }
     }
 
     <span class="doccomment">/// Finds the [`Guild`] that owns the emoji by looking through the Cache.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`Guild`]: struct.Guild.html</span>
+    <span class="doccomment">/// [`Guild`]: super::Guild</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Examples</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Print the guild id that owns this emoji:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```rust,no_run</span>
-    <span class="doccomment">/// # use serde_json::json;</span>
+    <span class="doccomment">/// # use serde_json::{json, from_value};</span>
     <span class="doccomment">/// # use serenity::{cache::Cache, model::{guild::{Emoji, Role}, id::EmojiId}};</span>
     <span class="doccomment">/// # use tokio::sync::RwLock;</span>
     <span class="doccomment">/// # use std::sync::Arc;</span>
@@ -382,7 +411,7 @@
     <span class="doccomment">/// # async fn run() {</span>
     <span class="doccomment">/// # let cache = Cache::default();</span>
     <span class="doccomment">/// #</span>
-    <span class="doccomment">/// # let mut emoji = serde_json::from_value::&lt;Emoji&gt;(json!({</span>
+    <span class="doccomment">/// # let mut emoji = from_value::&lt;Emoji&gt;(json!({</span>
     <span class="doccomment">/// #     &quot;animated&quot;: false,</span>
     <span class="doccomment">/// #     &quot;id&quot;: EmojiId(7),</span>
     <span class="doccomment">/// #     &quot;name&quot;: &quot;blobface&quot;,</span>
@@ -398,8 +427,8 @@
     <span class="doccomment">/// # }</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cache&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">find_guild_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cache</span>: <span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Cache</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GuildId</span><span class="op">&gt;</span> {
-        <span class="kw">for</span> <span class="ident">guild</span> <span class="kw">in</span> <span class="ident">cache</span>.<span class="ident">as_ref</span>().<span class="ident">guilds</span>.<span class="ident">read</span>().<span class="ident">await</span>.<span class="ident">values</span>() {
+    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">find_guild_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cache</span>: <span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Cache</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GuildId</span><span class="op">&gt;</span> {
+        <span class="kw">for</span> <span class="ident">guild</span> <span class="kw">in</span> <span class="ident">cache</span>.<span class="ident">as_ref</span>().<span class="ident">guilds</span>.<span class="ident">read</span>().<span class="kw">await</span>.<span class="ident">values</span>() {
             <span class="kw">if</span> <span class="ident">guild</span>.<span class="ident">emojis</span>.<span class="ident">contains_key</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">id</span>) {
                 <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">guild</span>.<span class="ident">id</span>);
             }
@@ -415,14 +444,11 @@
     <span class="doccomment">/// Print the direct link to the given emoji:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```rust,no_run</span>
-    <span class="doccomment">/// # extern crate serde_json;</span>
-    <span class="doccomment">/// # extern crate serenity;</span>
-    <span class="doccomment">/// #</span>
-    <span class="doccomment">/// # use serde_json::json;</span>
+    <span class="doccomment">/// # use serde_json::{json, from_value};</span>
     <span class="doccomment">/// # use serenity::model::{guild::{Emoji, Role}, id::EmojiId};</span>
     <span class="doccomment">/// #</span>
     <span class="doccomment">/// # fn main() {</span>
-    <span class="doccomment">/// # let mut emoji = serde_json::from_value::&lt;Emoji&gt;(json!({</span>
+    <span class="doccomment">/// # let mut emoji = from_value::&lt;Emoji&gt;(json!({</span>
     <span class="doccomment">/// #     &quot;animated&quot;: false,</span>
     <span class="doccomment">/// #     &quot;id&quot;: EmojiId(7),</span>
     <span class="doccomment">/// #     &quot;name&quot;: &quot;blobface&quot;,</span>
@@ -437,8 +463,8 @@
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">url</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
-        <span class="kw">let</span> <span class="ident">extension</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">animated</span> {<span class="string">&quot;gif&quot;</span>} <span class="kw">else</span> {<span class="string">&quot;png&quot;</span>};
-        <span class="macro">format</span><span class="macro">!</span>(<span class="macro">cdn</span><span class="macro">!</span>(<span class="string">&quot;/emojis/{}.{}&quot;</span>), <span class="self">self</span>.<span class="ident">id</span>, <span class="ident">extension</span>)
+        <span class="kw">let</span> <span class="ident">extension</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">animated</span> { <span class="string">&quot;gif&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;png&quot;</span> };
+        <span class="macro">format!</span>(<span class="macro">cdn!</span>(<span class="string">&quot;/emojis/{}.{}&quot;</span>), <span class="self">self</span>.<span class="ident">id</span>, <span class="ident">extension</span>)
     }
 }
 
@@ -455,20 +481,25 @@
             <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;&lt;:&quot;</span>)<span class="question-mark">?</span>;
         }
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>)<span class="question-mark">?</span>;
-        <span class="ident">FmtWrite</span>::<span class="ident">write_char</span>(<span class="ident">f</span>, <span class="string">&#39;:&#39;</span>)<span class="question-mark">?</span>;
-        <span class="ident">Display</span>::<span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">id</span>, <span class="ident">f</span>)<span class="question-mark">?</span>;
-        <span class="ident">FmtWrite</span>::<span class="ident">write_char</span>(<span class="ident">f</span>, <span class="string">&#39;&gt;&#39;</span>)
+        <span class="ident">FmtWrite::write_char</span>(<span class="ident">f</span>, <span class="string">&#39;:&#39;</span>)<span class="question-mark">?</span>;
+        <span class="ident">Display::fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">id</span>, <span class="ident">f</span>)<span class="question-mark">?</span>;
+        <span class="ident">FmtWrite::write_char</span>(<span class="ident">f</span>, <span class="string">&#39;&gt;&#39;</span>)
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Emoji</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">EmojiId</span> {
-    <span class="doccomment">/// Gets the Id of an `Emoji`.</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">emoji</span>: <span class="ident">Emoji</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EmojiId</span> { <span class="ident">emoji</span>.<span class="ident">id</span> }
+    <span class="doccomment">/// Gets the Id of an [`Emoji`].</span>
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">emoji</span>: <span class="ident">Emoji</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EmojiId</span> {
+        <span class="ident">emoji</span>.<span class="ident">id</span>
+    }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Emoji</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">EmojiId</span> {
-    <span class="doccomment">/// Gets the Id of an `Emoji`.</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">emoji</span>: <span class="kw-2">&amp;</span><span class="ident">Emoji</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EmojiId</span> { <span class="ident">emoji</span>.<span class="ident">id</span> }
+    <span class="doccomment">/// Gets the Id of an [`Emoji`].</span>
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">emoji</span>: <span class="kw-2">&amp;</span><span class="ident">Emoji</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EmojiId</span> {
+        <span class="ident">emoji</span>.<span class="ident">id</span>
+    }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../../";window.currentCrate = "serenity";</script><script src="../../../../main.js"></script><script src="../../../../source-script.js"></script><script src="../../../../source-files.js"></script><script defer src="../../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="serenity" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>
+    <script src="../../../../main.js"></script><script src="../../../../source-script.js"></script><script src="../../../../source-files.js"></script></body></html>
