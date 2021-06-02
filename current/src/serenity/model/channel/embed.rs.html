@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/channel/embed.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>embed.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script src="../../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/channel/embed.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>embed.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../../serenity/index.html'><div class='logo-container rust-logo'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
-                <a id="settings-menu" href="../../../../settings.html"><img src="../../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../serenity/index.html'><div class='logo-container rust-logo'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
+                <a id="settings-menu" href="../../../../settings.html"><img src="../../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -224,26 +224,15 @@
 <span id="221">221</span>
 <span id="222">222</span>
 <span id="223">223</span>
-<span id="224">224</span>
-<span id="225">225</span>
-<span id="226">226</span>
-<span id="227">227</span>
-<span id="228">228</span>
-<span id="229">229</span>
-<span id="230">230</span>
-<span id="231">231</span>
-<span id="232">232</span>
-<span id="233">233</span>
-<span id="234">234</span>
-</pre><div class="example-wrap"><pre class="rust ">
+</pre><pre class="rust">
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>)]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">builder</span>::<span class="ident">CreateEmbed</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::builder::CreateEmbed</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>)]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">internal</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::internal::prelude</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>)]</span>
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::utils</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;utils&quot;</span>)]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">utils</span>::<span class="ident">Colour</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>)]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">utils</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::utils::Colour</span>;
 
 <span class="doccomment">/// Represents a rich embed which allows using richer markdown, multiple fields</span>
 <span class="doccomment">/// and more. This was heavily inspired by [slack&#39;s attachments].</span>
@@ -256,6 +245,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [slack&#39;s attachments]: https://api.slack.com/docs/message-attachments</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>)]</span>
+<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Embed</span> {
     <span class="doccomment">/// Information about the author of the embed.</span>
     <span class="kw">pub</span> <span class="ident">author</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EmbedAuthor</span><span class="op">&gt;</span>,
@@ -286,10 +276,8 @@
     <span class="kw">pub</span> <span class="ident">kind</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Provider information for the embed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For example, if the embed [`kind`] is `&quot;video&quot;`, the provider might</span>
+    <span class="doccomment">/// For example, if the embed [`Self::kind`] is `&quot;video&quot;`, the provider might</span>
     <span class="doccomment">/// contain information about YouTube.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`kind`]: #structfield.kind</span>
     <span class="kw">pub</span> <span class="ident">provider</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EmbedProvider</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Thumbnail information of the embed.</span>
     <span class="kw">pub</span> <span class="ident">thumbnail</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EmbedThumbnail</span><span class="op">&gt;</span>,
@@ -301,21 +289,17 @@
     <span class="kw">pub</span> <span class="ident">url</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The embed&#39;s video information.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is present if the [`kind`] is `&quot;video&quot;`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`kind`]: #structfield.kind</span>
+    <span class="doccomment">/// This is present if the [`Self::kind`] is `&quot;video&quot;`.</span>
     <span class="kw">pub</span> <span class="ident">video</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EmbedVideo</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">_nonexhaustive</span>: (),
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;model&quot;</span>)]</span>
 <span class="kw">impl</span> <span class="ident">Embed</span> {
-    <span class="doccomment">/// Creates a fake Embed, giving back a `serde_json` map.</span>
+    <span class="doccomment">/// Creates a fake Embed, giving back a [`serde_json`] map.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This should only be useful in conjunction with [`Webhook::execute`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`Webhook::execute`]: ../webhook/struct.Webhook.html</span>
+    <span class="doccomment">/// [`Webhook::execute`]: crate::model::webhook::Webhook::execute</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Examples</span>
     <span class="doccomment">///</span>
@@ -332,17 +316,20 @@
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fake</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Value</span>
-        <span class="kw">where</span> <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CreateEmbed</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CreateEmbed</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">create_embed</span> <span class="op">=</span> <span class="ident">CreateEmbed</span>::<span class="ident">default</span>();
+    <span class="kw">where</span>
+        <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CreateEmbed</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CreateEmbed</span>,
+    {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">create_embed</span> <span class="op">=</span> <span class="ident">CreateEmbed::default</span>();
         <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">create_embed</span>);
-        <span class="kw">let</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">utils</span>::<span class="ident">hashmap_to_json_map</span>(<span class="ident">create_embed</span>.<span class="number">0</span>);
+        <span class="kw">let</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">utils::hashmap_to_json_map</span>(<span class="ident">create_embed</span>.<span class="number">0</span>);
 
-        <span class="ident">Value</span>::<span class="ident">Object</span>(<span class="ident">map</span>)
+        <span class="ident">Value::Object</span>(<span class="ident">map</span>)
     }
 }
 
 <span class="doccomment">/// An author object in an embed.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>)]</span>
+<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EmbedAuthor</span> {
     <span class="doccomment">/// The URL of the author icon.</span>
     <span class="doccomment">///</span>
@@ -354,12 +341,11 @@
     <span class="kw">pub</span> <span class="ident">proxy_icon_url</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The URL of the author.</span>
     <span class="kw">pub</span> <span class="ident">url</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">_nonexhaustive</span>: (),
 }
 
 <span class="doccomment">/// A field object in an embed.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>)]</span>
+<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EmbedField</span> {
     <span class="doccomment">/// Indicator of whether the field should display as inline.</span>
     <span class="kw">pub</span> <span class="ident">inline</span>: <span class="ident">bool</span>,
@@ -371,35 +357,33 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The maxiumum length of this field is 1024 unicode codepoints.</span>
     <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">String</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">_nonexhaustive</span>: (),
 }
 
 <span class="kw">impl</span> <span class="ident">EmbedField</span> {
     <span class="doccomment">/// Creates a new embed field.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// **Note**: Refer to the [`name`] and [`value`] documentation for maximum</span>
+    <span class="doccomment">/// **Note**: Refer to the [`Self::name`] and [`Self::value`] documentation for maximum</span>
     <span class="doccomment">/// lengths.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`name`]: #structfield.name</span>
-    <span class="doccomment">/// [`value`]: #structfield.value</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">U</span><span class="op">&gt;</span>(<span class="ident">name</span>: <span class="ident">T</span>, <span class="ident">value</span>: <span class="ident">U</span>, <span class="ident">inline</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
-        <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">U</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="self">Self</span>::<span class="ident">_new</span>(<span class="ident">name</span>.<span class="ident">into</span>(), <span class="ident">value</span>.<span class="ident">into</span>(), <span class="ident">inline</span>)
+    <span class="kw">where</span>
+        <span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+        <span class="ident">U</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    {
+        <span class="self">Self</span><span class="ident">::_new</span>(<span class="ident">name</span>.<span class="ident">into</span>(), <span class="ident">value</span>.<span class="ident">into</span>(), <span class="ident">inline</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">_new</span>(<span class="ident">name</span>: <span class="ident">String</span>, <span class="ident">value</span>: <span class="ident">String</span>, <span class="ident">inline</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
+            <span class="ident">inline</span>,
             <span class="ident">name</span>,
             <span class="ident">value</span>,
-            <span class="ident">inline</span>,
-            <span class="ident">_nonexhaustive</span>: (),
         }
     }
 }
 
 <span class="doccomment">/// Footer information for an embed.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>)]</span>
+<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EmbedFooter</span> {
     <span class="doccomment">/// The URL of the footer icon.</span>
     <span class="doccomment">///</span>
@@ -409,12 +393,11 @@
     <span class="kw">pub</span> <span class="ident">proxy_icon_url</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The associated text with the footer.</span>
     <span class="kw">pub</span> <span class="ident">text</span>: <span class="ident">String</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">_nonexhaustive</span>: (),
 }
 
 <span class="doccomment">/// An image object in an embed.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>)]</span>
+<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EmbedImage</span> {
     <span class="doccomment">/// The height of the image.</span>
     <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">u64</span>,
@@ -426,23 +409,21 @@
     <span class="kw">pub</span> <span class="ident">url</span>: <span class="ident">String</span>,
     <span class="doccomment">/// The width of the image.</span>
     <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">u64</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">_nonexhaustive</span>: (),
 }
 
 <span class="doccomment">/// The provider of an embed.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>)]</span>
+<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EmbedProvider</span> {
     <span class="doccomment">/// The name of the provider.</span>
     <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
     <span class="doccomment">/// The URL of the provider.</span>
     <span class="kw">pub</span> <span class="ident">url</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">_nonexhaustive</span>: (),
 }
 
 <span class="doccomment">/// The dimensions and URL of an embed thumbnail.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>)]</span>
+<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EmbedThumbnail</span> {
     <span class="doccomment">/// The height of the thumbnail in pixels.</span>
     <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">u64</span>,
@@ -454,12 +435,11 @@
     <span class="kw">pub</span> <span class="ident">url</span>: <span class="ident">String</span>,
     <span class="doccomment">/// The width of the thumbnail in pixels.</span>
     <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">u64</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">_nonexhaustive</span>: (),
 }
 
 <span class="doccomment">/// Video information for an embed.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Deserialize</span>, <span class="ident">Serialize</span>)]</span>
+<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EmbedVideo</span> {
     <span class="doccomment">/// The height of the video in pixels.</span>
     <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">u64</span>,
@@ -467,8 +447,7 @@
     <span class="kw">pub</span> <span class="ident">url</span>: <span class="ident">String</span>,
     <span class="doccomment">/// The width of the video in pixels.</span>
     <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">u64</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">_nonexhaustive</span>: (),
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../../";window.currentCrate = "serenity";</script><script src="../../../../main.js"></script><script src="../../../../source-script.js"></script><script src="../../../../source-files.js"></script><script defer src="../../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="serenity" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>
+    <script src="../../../../main.js"></script><script src="../../../../source-script.js"></script><script src="../../../../source-files.js"></script></body></html>

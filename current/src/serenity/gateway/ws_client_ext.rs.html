@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/gateway/ws_client_ext.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ws_client_ext.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/gateway/ws_client_ext.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ws_client_ext.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../serenity/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
-                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../serenity/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
+                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -151,44 +151,72 @@
 <span id="148">148</span>
 <span id="149">149</span>
 <span id="150">150</span>
-</pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">constants</span>::{<span class="self">self</span>, <span class="ident">OpCode</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">gateway</span>::{<span class="ident">CurrentPresence</span>, <span class="ident">WsStream</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">client</span>::<span class="ident">bridge</span>::<span class="ident">gateway</span>::<span class="ident">GatewayIntents</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">internal</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">internal</span>::<span class="ident">ws_impl</span>::<span class="ident">SenderExt</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">model</span>::<span class="ident">id</span>::<span class="ident">GuildId</span>;
-<span class="kw">use</span> <span class="ident">serde_json</span>::<span class="ident">json</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">env</span>::<span class="ident">consts</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">time</span>::<span class="ident">SystemTime</span>;
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+</pre><pre class="rust">
+<span class="kw">use</span> <span class="ident">std::env::consts</span>;
+<span class="kw">use</span> <span class="ident">std::time::SystemTime</span>;
+
+<span class="kw">use</span> <span class="ident">async_trait::async_trait</span>;
+<span class="kw">use</span> <span class="ident">serde_json::json</span>;
+<span class="kw">use</span> <span class="ident">tracing::instrument</span>;
 <span class="kw">use</span> <span class="ident">tracing</span>::{<span class="ident">debug</span>, <span class="ident">trace</span>};
-<span class="kw">use</span> <span class="ident">async_trait</span>::<span class="ident">async_trait</span>;
-<span class="kw">use</span> <span class="ident">tracing</span>::<span class="ident">instrument</span>;
+
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::client::bridge::gateway</span>::{<span class="ident">ChunkGuildFilter</span>, <span class="ident">GatewayIntents</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::constants</span>::{<span class="self">self</span>, <span class="ident">OpCode</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::gateway</span>::{<span class="ident">CurrentPresence</span>, <span class="ident">WsStream</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::internal::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::internal::ws_impl::SenderExt</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::model::id::GuildId</span>;
 
 <span class="attribute">#[<span class="ident">async_trait</span>]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">WebSocketGatewayClientExt</span> {
-    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">send_chunk_guilds</span><span class="op">&lt;</span><span class="ident">It</span><span class="op">&gt;</span>(
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">send_chunk_guild</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">guild_ids</span>: <span class="ident">It</span>,
+        <span class="ident">guild_id</span>: <span class="ident">GuildId</span>,
         <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>],
         <span class="ident">limit</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>,
-        <span class="ident">query</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
+        <span class="ident">filter</span>: <span class="ident">ChunkGuildFilter</span>,
         <span class="ident">nonce</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">It</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="ident">GuildId</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>;
 
-    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">send_heartbeat</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>], <span class="ident">seq</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>;
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">send_heartbeat</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>], <span class="ident">seq</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>;
 
-    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">send_identify</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>], <span class="ident">token</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">guild_subscriptions</span>: <span class="ident">bool</span>, <span class="ident">intents</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GatewayIntents</span><span class="op">&gt;</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>;
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">send_identify</span>(
+        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
+        <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>],
+        <span class="ident">token</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+        <span class="ident">intents</span>: <span class="ident">GatewayIntents</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>;
 
-    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">send_presence_update</span>(
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">send_presence_update</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>],
         <span class="ident">current_presence</span>: <span class="kw-2">&amp;</span><span class="ident">CurrentPresence</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>;
 
-    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">send_resume</span>(
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">send_resume</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>],
         <span class="ident">session_id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
@@ -199,108 +227,127 @@
 
 <span class="attribute">#[<span class="ident">async_trait</span>]</span>
 <span class="kw">impl</span> <span class="ident">WebSocketGatewayClientExt</span> <span class="kw">for</span> <span class="ident">WsStream</span> {
-    <span class="attribute">#[<span class="ident">instrument</span>(<span class="ident">skip</span>(<span class="self">self</span>, <span class="ident">guild_ids</span>))]</span>
-    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">send_chunk_guilds</span><span class="op">&lt;</span><span class="ident">It</span><span class="op">&gt;</span>(
+    <span class="attribute">#[<span class="ident">instrument</span>(<span class="ident">skip</span>(<span class="self">self</span>))]</span>
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">send_chunk_guild</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">guild_ids</span>: <span class="ident">It</span>,
+        <span class="ident">guild_id</span>: <span class="ident">GuildId</span>,
         <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>],
         <span class="ident">limit</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>,
-        <span class="ident">query</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
+        <span class="ident">filter</span>: <span class="ident">ChunkGuildFilter</span>,
         <span class="ident">nonce</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">It</span>: <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="ident">GuildId</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> {
-        <span class="macro">debug</span><span class="macro">!</span>(<span class="string">&quot;[Shard {:?}] Requesting member chunks&quot;</span>, <span class="ident">shard_info</span>);
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="macro">debug!</span>(<span class="string">&quot;[Shard {:?}] Requesting member chunks&quot;</span>, <span class="ident">shard_info</span>);
 
-        <span class="self">self</span>.<span class="ident">send_json</span>(<span class="kw-2">&amp;</span><span class="macro">json</span><span class="macro">!</span>({
-            <span class="string">&quot;op&quot;</span>: <span class="ident">OpCode</span>::<span class="ident">GetGuildMembers</span>.<span class="ident">num</span>(),
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">payload</span> <span class="op">=</span> <span class="macro">json!</span>({
+            <span class="string">&quot;op&quot;</span>: <span class="ident">OpCode::GetGuildMembers</span>.<span class="ident">num</span>(),
             <span class="string">&quot;d&quot;</span>: {
-                <span class="string">&quot;guild_id&quot;</span>: <span class="ident">guild_ids</span>.<span class="ident">into_iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">as_ref</span>().<span class="number">0</span>).<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span><span class="op">&gt;</span>(),
+                <span class="string">&quot;guild_id&quot;</span>: <span class="ident">guild_id</span>.<span class="ident">as_ref</span>().<span class="number">0</span>.<span class="ident">to_string</span>(),
                 <span class="string">&quot;limit&quot;</span>: <span class="ident">limit</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-                <span class="string">&quot;query&quot;</span>: <span class="ident">query</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;&quot;</span>),
                 <span class="string">&quot;nonce&quot;</span>: <span class="ident">nonce</span>.<span class="ident">unwrap_or</span>(<span class="string">&quot;&quot;</span>),
             },
-        })).<span class="ident">await</span>.<span class="ident">map_err</span>(<span class="ident">From</span>::<span class="ident">from</span>)
+        });
+
+        <span class="kw">match</span> <span class="ident">filter</span> {
+            <span class="ident">ChunkGuildFilter::None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">payload</span>[<span class="string">&quot;d&quot;</span>][<span class="string">&quot;query&quot;</span>] <span class="op">=</span> <span class="macro">json!</span>(<span class="string">&quot;&quot;</span>),
+            <span class="ident">ChunkGuildFilter::Query</span>(<span class="ident">query</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">payload</span>[<span class="string">&quot;d&quot;</span>][<span class="string">&quot;query&quot;</span>] <span class="op">=</span> <span class="macro">json!</span>(<span class="ident">query</span>),
+            <span class="ident">ChunkGuildFilter::UserIds</span>(<span class="ident">user_ids</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="kw">let</span> <span class="ident">ids</span> <span class="op">=</span> <span class="ident">user_ids</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="number">0</span>).<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span><span class="op">&gt;</span>();
+                <span class="ident">payload</span>[<span class="string">&quot;d&quot;</span>][<span class="string">&quot;user_ids&quot;</span>] <span class="op">=</span> <span class="macro">json!</span>(<span class="ident">ids</span>)
+            },
+        };
+
+        <span class="self">self</span>.<span class="ident">send_json</span>(<span class="kw-2">&amp;</span><span class="ident">payload</span>).<span class="kw">await</span>.<span class="ident">map_err</span>(<span class="ident">From::from</span>)
     }
 
     <span class="attribute">#[<span class="ident">instrument</span>(<span class="ident">skip</span>(<span class="self">self</span>))]</span>
-    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">send_heartbeat</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>], <span class="ident">seq</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">trace</span><span class="macro">!</span>(<span class="string">&quot;[Shard {:?}] Sending heartbeat d: {:?}&quot;</span>, <span class="ident">shard_info</span>, <span class="ident">seq</span>);
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">send_heartbeat</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>], <span class="ident">seq</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="macro">trace!</span>(<span class="string">&quot;[Shard {:?}] Sending heartbeat d: {:?}&quot;</span>, <span class="ident">shard_info</span>, <span class="ident">seq</span>);
 
-        <span class="self">self</span>.<span class="ident">send_json</span>(<span class="kw-2">&amp;</span><span class="macro">json</span><span class="macro">!</span>({
+        <span class="self">self</span>.<span class="ident">send_json</span>(<span class="kw-2">&amp;</span><span class="macro">json!</span>({
             <span class="string">&quot;d&quot;</span>: <span class="ident">seq</span>,
-            <span class="string">&quot;op&quot;</span>: <span class="ident">OpCode</span>::<span class="ident">Heartbeat</span>.<span class="ident">num</span>(),
-        })).<span class="ident">await</span>.<span class="ident">map_err</span>(<span class="ident">From</span>::<span class="ident">from</span>)
+            <span class="string">&quot;op&quot;</span>: <span class="ident">OpCode::Heartbeat</span>.<span class="ident">num</span>(),
+        }))
+        .<span class="kw">await</span>
+        .<span class="ident">map_err</span>(<span class="ident">From::from</span>)
     }
 
     <span class="attribute">#[<span class="ident">instrument</span>(<span class="ident">skip</span>(<span class="self">self</span>, <span class="ident">token</span>))]</span>
-    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">send_identify</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>], <span class="ident">token</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">guild_subscriptions</span>: <span class="ident">bool</span>, <span class="ident">intents</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GatewayIntents</span><span class="op">&gt;</span>)
-        <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">debug</span><span class="macro">!</span>(<span class="string">&quot;[Shard {:?}] Identifying&quot;</span>, <span class="ident">shard_info</span>);
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">send_identify</span>(
+        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
+        <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>],
+        <span class="ident">token</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+        <span class="ident">intents</span>: <span class="ident">GatewayIntents</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="macro">debug!</span>(<span class="string">&quot;[Shard {:?}] Identifying&quot;</span>, <span class="ident">shard_info</span>);
 
-        <span class="self">self</span>.<span class="ident">send_json</span>(<span class="kw-2">&amp;</span><span class="macro">json</span><span class="macro">!</span>({
-            <span class="string">&quot;op&quot;</span>: <span class="ident">OpCode</span>::<span class="ident">Identify</span>.<span class="ident">num</span>(),
+        <span class="self">self</span>.<span class="ident">send_json</span>(<span class="kw-2">&amp;</span><span class="macro">json!</span>({
+            <span class="string">&quot;op&quot;</span>: <span class="ident">OpCode::Identify</span>.<span class="ident">num</span>(),
             <span class="string">&quot;d&quot;</span>: {
                 <span class="string">&quot;compress&quot;</span>: <span class="bool-val">true</span>,
-                <span class="string">&quot;large_threshold&quot;</span>: <span class="ident">constants</span>::<span class="ident">LARGE_THRESHOLD</span>,
-                <span class="string">&quot;guild_subscriptions&quot;</span>: <span class="ident">guild_subscriptions</span>,
+                <span class="string">&quot;large_threshold&quot;</span>: <span class="ident">constants::LARGE_THRESHOLD</span>,
                 <span class="string">&quot;shard&quot;</span>: <span class="ident">shard_info</span>,
                 <span class="string">&quot;token&quot;</span>: <span class="ident">token</span>,
                 <span class="string">&quot;intents&quot;</span>: <span class="ident">intents</span>,
-                <span class="string">&quot;v&quot;</span>: <span class="ident">constants</span>::<span class="ident">GATEWAY_VERSION</span>,
+                <span class="string">&quot;v&quot;</span>: <span class="ident">constants::GATEWAY_VERSION</span>,
                 <span class="string">&quot;properties&quot;</span>: {
                     <span class="string">&quot;$browser&quot;</span>: <span class="string">&quot;serenity&quot;</span>,
                     <span class="string">&quot;$device&quot;</span>: <span class="string">&quot;serenity&quot;</span>,
-                    <span class="string">&quot;$os&quot;</span>: <span class="ident">consts</span>::<span class="ident">OS</span>,
+                    <span class="string">&quot;$os&quot;</span>: <span class="ident">consts::OS</span>,
                 },
             },
-        })).<span class="ident">await</span>
+        }))
+        .<span class="kw">await</span>
     }
 
     <span class="attribute">#[<span class="ident">instrument</span>(<span class="ident">skip</span>(<span class="self">self</span>))]</span>
-    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">send_presence_update</span>(
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">send_presence_update</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>],
         <span class="ident">current_presence</span>: <span class="kw-2">&amp;</span><span class="ident">CurrentPresence</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">&amp;</span>(<span class="kw-2">ref</span> <span class="ident">activity</span>, <span class="kw-2">ref</span> <span class="ident">status</span>) <span class="op">=</span> <span class="ident">current_presence</span>;
-        <span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">SystemTime</span>::<span class="ident">now</span>();
+        <span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">SystemTime::now</span>();
 
-        <span class="macro">debug</span><span class="macro">!</span>(<span class="string">&quot;[Shard {:?}] Sending presence update&quot;</span>, <span class="ident">shard_info</span>);
+        <span class="macro">debug!</span>(<span class="string">&quot;[Shard {:?}] Sending presence update&quot;</span>, <span class="ident">shard_info</span>);
 
-        <span class="self">self</span>.<span class="ident">send_json</span>(<span class="kw-2">&amp;</span><span class="macro">json</span><span class="macro">!</span>({
-            <span class="string">&quot;op&quot;</span>: <span class="ident">OpCode</span>::<span class="ident">StatusUpdate</span>.<span class="ident">num</span>(),
+        <span class="self">self</span>.<span class="ident">send_json</span>(<span class="kw-2">&amp;</span><span class="macro">json!</span>({
+            <span class="string">&quot;op&quot;</span>: <span class="ident">OpCode::StatusUpdate</span>.<span class="ident">num</span>(),
             <span class="string">&quot;d&quot;</span>: {
                 <span class="string">&quot;afk&quot;</span>: <span class="bool-val">false</span>,
                 <span class="string">&quot;since&quot;</span>: <span class="ident">now</span>,
                 <span class="string">&quot;status&quot;</span>: <span class="ident">status</span>.<span class="ident">name</span>(),
-                <span class="string">&quot;game&quot;</span>: <span class="ident">activity</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="macro">json</span><span class="macro">!</span>({
+                <span class="string">&quot;game&quot;</span>: <span class="ident">activity</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="macro">json!</span>({
                     <span class="string">&quot;name&quot;</span>: <span class="ident">x</span>.<span class="ident">name</span>,
                     <span class="string">&quot;type&quot;</span>: <span class="ident">x</span>.<span class="ident">kind</span>,
                     <span class="string">&quot;url&quot;</span>: <span class="ident">x</span>.<span class="ident">url</span>,
                 })),
             },
-        })).<span class="ident">await</span>
+        }))
+        .<span class="kw">await</span>
     }
 
-    <span class="attribute">#[<span class="ident">instrument</span>(<span class="ident">skip</span>(<span class="self">self</span>))]</span>
-    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">send_resume</span>(
+    <span class="attribute">#[<span class="ident">instrument</span>(<span class="ident">skip</span>(<span class="self">self</span>, <span class="ident">token</span>))]</span>
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">send_resume</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">shard_info</span>: <span class="kw-2">&amp;</span>[<span class="ident">u64</span>; <span class="number">2</span>],
         <span class="ident">session_id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">seq</span>: <span class="ident">u64</span>,
         <span class="ident">token</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="macro">debug</span><span class="macro">!</span>(<span class="string">&quot;[Shard {:?}] Sending resume; seq: {}&quot;</span>, <span class="ident">shard_info</span>, <span class="ident">seq</span>);
+        <span class="macro">debug!</span>(<span class="string">&quot;[Shard {:?}] Sending resume; seq: {}&quot;</span>, <span class="ident">shard_info</span>, <span class="ident">seq</span>);
 
-        <span class="self">self</span>.<span class="ident">send_json</span>(<span class="kw-2">&amp;</span><span class="macro">json</span><span class="macro">!</span>({
-            <span class="string">&quot;op&quot;</span>: <span class="ident">OpCode</span>::<span class="ident">Resume</span>.<span class="ident">num</span>(),
+        <span class="self">self</span>.<span class="ident">send_json</span>(<span class="kw-2">&amp;</span><span class="macro">json!</span>({
+            <span class="string">&quot;op&quot;</span>: <span class="ident">OpCode::Resume</span>.<span class="ident">num</span>(),
             <span class="string">&quot;d&quot;</span>: {
                 <span class="string">&quot;session_id&quot;</span>: <span class="ident">session_id</span>,
                 <span class="string">&quot;seq&quot;</span>: <span class="ident">seq</span>,
                 <span class="string">&quot;token&quot;</span>: <span class="ident">token</span>,
             },
-        })).<span class="ident">await</span>.<span class="ident">map_err</span>(<span class="ident">From</span>::<span class="ident">from</span>)
+        }))
+        .<span class="kw">await</span>
+        .<span class="ident">map_err</span>(<span class="ident">From::from</span>)
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "serenity";</script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="serenity" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
